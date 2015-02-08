@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence                                  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="SampleUnit">
+    <jta-data-source>jdbc/Local_MySQL_test</jta-data-source>
+    <properties>
+      <property name="eclipselink.canonicalmodel.subpackage" value="one"/>
+      
+      <property name="eclipselink.logging.level" value="FINE" />
+      <property name="eclipselink.logging.parameters" value="true"/>
+    </properties>
+  </persistence-unit>
+  
+  <persistence-unit name="OracleUnit">
+    <jta-data-source>jdbc/Local_Oracle_test</jta-data-source>
+    <properties>
+      <!-- persistence-unit を２つ定義すると必要になるらしい
+           https://aquainsky.wordpress.com/2011/11/30/%EF%BC%92%E3%81%A4%E3%81%AEpersistence-unit/
+           -->
+      <property name="eclipselink.canonicalmodel.subpackage" value="two"/>
+    </properties>
+  </persistence-unit>
+</persistence>
+

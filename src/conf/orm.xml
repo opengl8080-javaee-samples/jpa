@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+                            http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+  
+  <named-query name="LilyWhite.findSingle">
+    <query><![CDATA[
+     SELECT l
+       FROM LilyWhite l
+    ]]></query>
+  </named-query>
+  
+  <named-query name="AliceMargatroid.getName">
+    <query><![CDATA[
+     SELECT a.name
+       FROM AliceMargatroid a
+    ]]></query>
+  </named-query>
+  
+  <named-query name="AliceMargatroid.getNameAndValue">
+    <query><![CDATA[
+     SELECT a.name
+           ,a.value
+       FROM AliceMargatroid a
+    ]]></query>
+  </named-query>
+  
+  <named-query name="LunasaPrismriver.getMerlin">
+    <query><![CDATA[
+     SELECT l.merlinPrismriver
+       FROM LunasaPrismriver l
+    ]]></query>
+  </named-query>
+  
+  <named-query name="LunasaPrismriver.getLyrica">
+    <query><![CDATA[
+     SELECT l.lyricaPrismriverList
+       FROM LunasaPrismriver l
+    ]]></query>
+  </named-query>
+  
+  <named-query name="KonpakuYoumu.equal">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE k.amount = 10
+    ]]></query>
+  </named-query>
+
+  <named-query name="KonpakuYoumu.notEqual">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE k.amount <> 10
+    ]]></query>
+  </named-query>
+
+  <named-query name="KonpakuYoumu.lessThan">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE k.amount < 20
+    ]]></query>
+  </named-query>
+
+  <named-query name="KonpakuYoumu.lessThanEqual">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE k.amount <= 20
+    ]]></query>
+  </named-query>
+
+  <named-query name="KonpakuYoumu.greaterThan">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE k.amount > 20
+    ]]></query>
+  </named-query>
+
+  <named-query name="KonpakuYoumu.greaterThanEqual">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE k.amount >= 20
+    ]]></query>
+  </named-query>
+
+  <named-query name="KonpakuYoumu.or">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE k.amount = 10
+         OR k.value = 'nagoya'
+    ]]></query>
+  </named-query>
+
+  <named-query name="KonpakuYoumu.between">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE k.amount BETWEEN 20 AND 30
+    ]]></query>
+  </named-query>
+
+  <named-query name="KonpakuYoumu.like">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE k.value LIKE '%a'
+    ]]></query>
+  </named-query>
+
+  <named-query name="KonpakuYoumu.isNull">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE k.value IS NULL
+    ]]></query>
+  </named-query>
+
+  <named-query name="KonpakuYoumu.isEmpty">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE k.list IS EMPTY
+    ]]></query>
+  </named-query>
+
+  <named-query name="KonpakuYoumu.memberOf">
+    <query><![CDATA[
+     SELECT k
+       FROM KonpakuYoumu k
+      WHERE 'fizz' MEMBER OF k.list
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoRan.findById">
+    <query><![CDATA[
+     SELECT y
+       FROM YakumoRan y
+      WHERE y.id=:id
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoRan.findByDate">
+    <query><![CDATA[
+     SELECT y
+       FROM YakumoRan y
+      WHERE y.date=:date
+    ]]></query>
+  </named-query>
+
+  <named-query name="WriggleNightbug.inQuery">
+    <query><![CDATA[
+     SELECT mystiaLorelei.id
+       FROM WriggleNightbug w
+           ,IN(w.mystiaLoreleiList) mystiaLorelei
+      WHERE w.id = 1
+    ]]></query>
+  </named-query>
+
+  <named-query name="WriggleNightbug.innerJoin">
+    <query><![CDATA[
+     SELECT mystiaLorelei.id
+       FROM WriggleNightbug w
+ INNER JOIN w.mystiaLoreleiList mystiaLorelei
+      WHERE w.id = 1
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoYukari.concat">
+    <query><![CDATA[
+     SELECT CONCAT('<<', y.string, '>>')
+       FROM YakumoYukari y
+      WHERE y.id=1
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoYukari.trimDefault">
+    <query><![CDATA[
+     SELECT TRIM(y.string)
+       FROM YakumoYukari y
+      WHERE y.id=2
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoYukari.trimLeading">
+    <query><![CDATA[
+     SELECT TRIM(LEADING FROM y.string)
+       FROM YakumoYukari y
+      WHERE y.id=2
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoYukari.trimAsterisk">
+    <query><![CDATA[
+     SELECT TRIM(TRAILING '*' FROM y.string)
+       FROM YakumoYukari y
+      WHERE y.id=3
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoYukari.substringStart">
+    <query><![CDATA[
+     SELECT SUBSTRING(y.string, 3)
+       FROM YakumoYukari y
+      WHERE y.id=4
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoYukari.substringStartLength">
+    <query><![CDATA[
+     SELECT SUBSTRING(y.string, 3, 2)
+       FROM YakumoYukari y
+      WHERE y.id=4
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoYukari.lower">
+    <query><![CDATA[
+     SELECT LOWER(y.string)
+       FROM YakumoYukari y
+      WHERE y.id=5
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoYukari.upper">
+    <query><![CDATA[
+     SELECT UPPER(y.string)
+       FROM YakumoYukari y
+      WHERE y.id=5
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoYukari.length">
+    <query><![CDATA[
+     SELECT LENGTH(y.string)
+       FROM YakumoYukari y
+      WHERE y.id=1
+    ]]></query>
+  </named-query>
+
+  <named-query name="YakumoYukari.locate">
+    <query><![CDATA[
+     SELECT LOCATE('cd', y.string)
+       FROM YakumoYukari y
+      WHERE y.id=6
+    ]]></query>
+  </named-query>
+
+  <named-query name="IbukiSuika.abs">
+    <query><![CDATA[
+     SELECT ABS(i.number)
+       FROM IbukiSuika i
+      WHERE i.id=1
+    ]]></query>
+  </named-query>
+
+  <named-query name="IbukiSuika.sqrt">
+    <query><![CDATA[
+     SELECT SQRT(i.number)
+       FROM IbukiSuika i
+      WHERE i.id=2
+    ]]></query>
+  </named-query>
+
+  <named-query name="IbukiSuika.mod">
+    <query><![CDATA[
+     SELECT MOD(i.number, 5)
+       FROM IbukiSuika i
+      WHERE i.id=3
+    ]]></query>
+  </named-query>
+
+  <named-query name="IbukiSuika.size">
+    <query><![CDATA[
+     SELECT SIZE(i.list)
+       FROM IbukiSuika i
+      WHERE i.id=4
+    ]]></query>
+  </named-query>
+
+  <named-query name="IbukiSuika.index">
+    <query><![CDATA[
+     SELECT l
+       FROM IbukiSuika i
+           ,IN(i.list) l
+      WHERE i.id=4
+        AND INDEX(l) = 1
+    ]]></query>
+  </named-query>
+
+  <named-query name="KamishirasawaKeine.currentDate">
+    <query><![CDATA[
+     SELECT CURRENT_DATE
+       FROM KamishirasawaKeine k
+      WHERE k.id=1
+    ]]></query>
+  </named-query>
+
+  <named-query name="KamishirasawaKeine.currentTime">
+    <query><![CDATA[
+     SELECT CURRENT_TIME
+       FROM KamishirasawaKeine k
+      WHERE k.id=1
+    ]]></query>
+  </named-query>
+
+  <named-query name="KamishirasawaKeine.currentTimestamp">
+    <query><![CDATA[
+     SELECT CURRENT_TIMESTAMP
+       FROM KamishirasawaKeine k
+      WHERE k.id=1
+    ]]></query>
+  </named-query>
+
+  <named-query name="ReisenUdongeinInaba.parent">
+    <query><![CDATA[
+     SELECT r
+       FROM ReisenUdongeinInaba r
+      WHERE TYPE(r.inabaTewi) = ParentInabaTewi
+    ]]></query>
+  </named-query>
+
+  <named-query name="ReisenUdongeinInaba.child">
+    <query><![CDATA[
+     SELECT r
+       FROM ReisenUdongeinInaba r
+      WHERE TYPE(r.inabaTewi) = ChildInabaTewi
+    ]]></query>
+  </named-query>
+
+  <named-query name="SaigyojiYuyuko.orderByIdDesc">
+    <query><![CDATA[
+     SELECT s
+       FROM SaigyojiYuyuko s
+   ORDER BY s.id DESC
+    ]]></query>
+  </named-query>
+
+  <named-query name="SaigyojiYuyuko.orderByNumberDesc">
+    <query><![CDATA[
+     SELECT s
+       FROM SaigyojiYuyuko s
+   ORDER BY s.embeddedSaigyojiYuyuko.number DESC
+    ]]></query>
+  </named-query>
+
+  <named-query name="YagokoroEirin.groupBy">
+    <query><![CDATA[
+     SELECT y.value
+           ,COUNT(y)
+       FROM YagokoroEirin y
+   GROUP BY y.value
+    ]]></query>
+  </named-query>
+
+  <named-query name="YagokoroEirin.groupByObject">
+    <query><![CDATA[
+     SELECT y.embeddedValue
+           ,COUNT(y)
+       FROM YagokoroEirin y
+   GROUP BY y.embeddedValue
+    ]]></query>
+  </named-query>
+
+  <named-query name="HouraisanKaguya.count">
+    <query><![CDATA[
+     SELECT COUNT(h)
+       FROM HouraisanKaguya h
+    ]]></query>
+  </named-query>
+
+  <named-query name="HouraisanKaguya.stringMax">
+    <query><![CDATA[
+     SELECT MAX(h.string)
+       FROM HouraisanKaguya h
+    ]]></query>
+  </named-query>
+
+  <named-query name="HouraisanKaguya.numberMax">
+    <query><![CDATA[
+     SELECT MAX(h.number)
+       FROM HouraisanKaguya h
+    ]]></query>
+  </named-query>
+
+  <named-query name="HouraisanKaguya.min">
+    <query><![CDATA[
+     SELECT MIN(h.number)
+       FROM HouraisanKaguya h
+    ]]></query>
+  </named-query>
+
+  <named-query name="HouraisanKaguya.avg">
+    <query><![CDATA[
+     SELECT AVG(h.number)
+       FROM HouraisanKaguya h
+    ]]></query>
+  </named-query>
+
+  <named-query name="HouraisanKaguya.sum">
+    <query><![CDATA[
+     SELECT SUM(h.number)
+       FROM HouraisanKaguya h
+    ]]></query>
+  </named-query>
+  
+  <named-query name="FujiwaranoMokou.findAll">
+    <query><![CDATA[
+     SELECT f
+       FROM FujiwaranoMokou f
+    ]]></query>
+  </named-query>
+  
+  <named-query name="ShameimaruAya.findMax">
+    <query><![CDATA[
+     SELECT s1
+       FROM ShameimaruAya s1
+      WHERE s1.number = (
+              SELECT MAX(s2.number)
+                FROM ShameimaruAya s2
+            )
+    ]]></query>
+  </named-query>
+  
+  <named-query name="MedicineMelancholy.leftJoinOnCode">
+    <query><![CDATA[
+     SELECT m
+           ,k
+       FROM MedicineMelancholy m
+  LEFT JOIN KazamiYuka k
+         ON k.code = m.code
+    ]]></query>
+  </named-query>
+  
+  <named-query name="OnodukaKomachi.notFetchJoin">
+    <query><![CDATA[
+     SELECT o
+       FROM OnodukaKomachi o
+    ]]></query>
+  </named-query>
+  
+  <named-query name="OnodukaKomachi.fetchJoin">
+    <query><![CDATA[
+     SELECT o
+       FROM OnodukaKomachi o
+ JOIN FETCH o.shikiEiki
+    ]]></query>
+  </named-query>
+  
+  <named-query name="AkiMinoriko.having">
+    <query><![CDATA[
+      SELECT a.number
+            ,COUNT(a.number)
+        FROM AkiMinoriko a
+    GROUP BY a.number
+      HAVING 2 < COUNT(a.number)
+    ]]></query>
+  </named-query>
+  
+  <named-query name="KagiyamaHina.distinct">
+    <query><![CDATA[
+      SELECT 
+    DISTINCT k.number
+        FROM KagiyamaHina k
+    ]]></query>
+  </named-query>
+  
+  <named-query name="KawashiroNitori.exists">
+    <query><![CDATA[
+      SELECT k1
+        FROM KawashiroNitori k1
+       WHERE EXISTS (
+             SELECT 1
+               FROM KawashiroNitori k2
+              WHERE k2.value = k1.value
+                AND k2.id <> k1.id
+        )
+    ]]></query>
+  </named-query>
+  
+  <named-query name="InubashiriMomiji.in">
+    <query><![CDATA[
+      SELECT i
+        FROM InubashiriMomiji i
+       WHERE i.number IN (111, 333)
+    ]]></query>
+  </named-query>
+  
+  <named-query name="InubashiriMomiji.inSubquery">
+    <query><![CDATA[
+      SELECT i
+        FROM InubashiriMomiji i
+       WHERE i.number IN (
+             SELECT k.number
+               FROM KochiyaSanae k
+       )
+    ]]></query>
+  </named-query>
+  
+  <named-query name="InubashiriMomiji.inParameter">
+    <query><![CDATA[
+      SELECT i
+        FROM InubashiriMomiji i
+       WHERE i.number IN :inParam
+    ]]></query>
+  </named-query>
+  
+  <named-query name="InubashiriMomiji.any">
+    <query><![CDATA[
+      SELECT i
+        FROM InubashiriMomiji i
+       WHERE i.number < ANY (
+             SELECT k.number
+               FROM KochiyaSanae k
+       )
+    ]]></query>
+  </named-query>
+  
+  <named-query name="InubashiriMomiji.all">
+    <query><![CDATA[
+      SELECT i
+        FROM InubashiriMomiji i
+       WHERE i.number > ALL (
+             SELECT k.number
+               FROM KochiyaSanae k
+       )
+    ]]></query>
+  </named-query>
+  
+  <named-query name="YasakaKanako.update">
+    <query><![CDATA[
+      UPDATE YasakaKanako y
+         SET y.value = 'update'
+       WHERE y.id = 2
+    ]]></query>
+  </named-query>
+  
+  <named-query name="YasakaKanako.delete">
+    <query><![CDATA[
+      DELETE
+        FROM YasakaKanako y
+       WHERE y.id IN (1, 2)
+    ]]></query>
+  </named-query>
+  
+  <named-query name="MoriyaSuwako.case">
+    <query><![CDATA[
+      SELECT m.number
+            ,CASE MOD(m.number, 2)
+                 WHEN 0 THEN 'even'
+                 ELSE 'odd'
+             END
+        FROM MoriyaSuwako m
+    ]]></query>
+  </named-query>
+  
+  <named-native-query name="native-query-simple">
+    <query><![CDATA[
+      SELECT *
+        FROM NATIVE_QUERY_TEST
+    ]]></query>
+  </named-native-query>
+  
+  <named-stored-procedure-query name="sample-stored-procedure" procedure-name="sample_stored_procedure">
+    <parameter name="intParam" mode="IN" />
+    <parameter name="stringParam" mode="IN" />
+    <parameter name="outParam" mode="OUT" />
+  </named-stored-procedure-query>
+  
+  <named-query name="HinanaiTenshi.functions">
+    <query><![CDATA[
+      SELECT FUNCTION('FORMAT', h.number, 3)
+        FROM HinanaiTenshi h
+    ]]></query>
+  </named-query>
+</entity-mappings>

@@ -16,8 +16,7 @@ public class AsakuraRikakoKey {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        return hash;
+        return Objects.hash(this.key);
     }
 
     @Override
